@@ -141,7 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 			}
 		};
-		let queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: 'created' };
+        const getPage = () => {
+            var url = window.location.href;
+            var match = url.match(/page\/(\d+)/);
+            var pageId = match ? match[1] : 1;
+            return pageId;
+        };
+		let queryData = { page: getPage(), pageSize: window.Joe.PAGE_SIZE, type: 'created' };
 		const initDom = () => {
 			$('.joe_index__list .joe_list').html('');
 			$('.joe_load').show();
